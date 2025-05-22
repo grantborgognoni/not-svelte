@@ -1,0 +1,35 @@
+{
+  "name": "my-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "concurrently \"(cd server && cargo run)\" \"react-router dev\"",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@improbable-eng/grpc-web": "^0.15.0",
+    "@react-router/node": "^7.5.3",
+    "@react-router/serve": "^7.5.3",
+    "@tanstack/react-query": "^5.0.0",
+    "browser-headers": "^0.4.1",
+    "isbot": "^5.1.27",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.5.3"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^7.5.3",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/node": "^20",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "concurrently": "^9.1.2",
+    "tailwindcss": "^4.1.7",
+    "ts-proto": "^2.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
