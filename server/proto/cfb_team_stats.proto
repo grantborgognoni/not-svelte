@@ -1,0 +1,52 @@
+syntax = "proto3";
+package cfb;
+
+message TeamStats {
+  int32 season = 1;
+  string team = 2;
+  int32 games = 3;
+  int32 wins = 4;
+  int32 losses = 5;
+  float points_per_game = 6;
+  int32 total_points = 7;
+  int32 offense_rank = 8;
+  int32 offense_plays = 9;
+  int32 offense_yards = 10;
+  float offense_yards_per_play = 11;
+  int32 offense_touchdowns = 12;
+  float offense_yards_per_game = 13;
+  int32 defense_rank = 14;
+  int32 defense_plays = 15;
+  int32 yards_allowed = 16;
+  float yards_per_play_allowed = 17;
+  int32 total_touchdowns_allowed = 18;
+  int32 points_allowed = 19;
+  float avg_points_per_game_allowed = 20;
+  int32 pass_attempts = 21;
+  int32 pass_completions = 22;
+  int32 pass_yards = 23;
+  int32 pass_touchdowns = 24;
+  int32 interceptions_thrown = 25;
+  float pass_yards_per_attempt = 26;
+  int32 rush_attempts = 27;
+  int32 rush_yards = 28;
+  int32 rush_touchdowns = 29;
+  float yards_per_rush = 30;
+  int32 fumbles_recovered = 31;
+  int32 interceptions_gained = 32;
+  int32 turnovers_lost = 33;
+  int32 turnover_margin = 34;
+}
+
+message TeamStatsRequest {
+  optional int32 season = 1;
+  optional string team = 2;
+}
+
+message TeamStatsResponse {
+  repeated TeamStats stats = 1;
+}
+
+service Stats {
+  rpc GetTeamStats (TeamStatsRequest) returns (TeamStatsResponse);
+}

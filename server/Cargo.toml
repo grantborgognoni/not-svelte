@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+dotenvy = "0.15.7"
 prost = "0.11"
 prost-types = "0.11"
+sqlx = { version = "0.8.6", features = ["runtime-tokio-rustls", "sqlite"] }
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
 tonic = "0.9.2"
 tonic-health = "0.9.2"
