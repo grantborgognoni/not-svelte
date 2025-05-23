@@ -26,33 +26,34 @@ impl Stats for CfbService {
         &self,
         request: Request<TeamStatsRequest>,
     ) -> Result<Response<TeamStatsResponse>, Status> {
-        // Extract the request fields
         let req = request.into_inner();
-        // Start with a base query
+        println!("Request: {:?}", req);
+
         let mut query = String::from("SELECT * FROM cfb_team_stats WHERE 1=1");
 
-        // Add filters if present
         if req.season.is_some() {
             query.push_str(" AND season = ?");
         }
         if req.team.is_some() {
-            query.push_str(" AND team = ?");
+            query.push_str(" AND rowid IN (SELECT rowid FROM cfb_team_stats_fts WHERE team LIKE ?)");
         }
 
-        // Prepare the query and bind parameters in order
+        println!("Query: {}", query);
+
         let mut q = sqlx::query(&query);
-        if req.season.is_some() {
-            q = q.bind(req.season);
+
+        if let Some(season) = req.season {
+            q = q.bind(season);
         }
-        if req.team.is_some() {
-            q = q.bind(req.team);
+        if let Some(team) = &req.team {
+            q = q.bind(format!("%{}%", team));
         }
 
-        // Set query and map errors to gRPC Status
+        // Execute the query
         let rows = q
             .fetch_all(&self.pool)
             .await
-            .map_err(|e| Status::internal(e.to_string()))?;
+            .map_err(|e| Status::internal(format!("DB error: {}", e)))?;
 
         // Map each row to the TeamStats protobuf struct
         let stats: Vec<TeamStats> = rows.into_iter().map(|row| {

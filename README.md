@@ -13,6 +13,8 @@ A full-stack college football stat app (I was going to do college football coach
 - Modern React Router-based routing
 - Tailwind CSS styling
 - Flexible backend queries (by season, team, etc.)
+- SQL FTS5 Virtual tables for full-text search
+- SQL indexes for query performance
 
 ## Requirements
 
@@ -28,7 +30,7 @@ A full-stack college football stat app (I was going to do college football coach
    ```
    DATABASE_URL=sqlite:server/db/cfb_clean.db
    ```
-3. From `app/`, install dependencies:
+3. To start the developement environment run:
    ```bash
    npm install
    npm run dev
