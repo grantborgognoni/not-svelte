@@ -2,7 +2,7 @@
 
 A full-stack college football stat app (I was going to do college football coach salaries but didn't want to catch the heat that could come from that)
 
-- **Frontend:** Svelte 5, TypeScript, Tailwind CSS
+- **Frontend:** React, TypeScript, Tailwind CSS
 - **Backend:** Rust, gRPC (tonic), Protocol Buffers, sqlx, SQLite
 - **Database:** SQLite
 
