@@ -13,6 +13,8 @@ A full-stack college football stat app (I was going to do college football coach
 - Modern React Router-based routing
 - Tailwind CSS styling
 - Flexible backend queries (by season, team, etc.)
+- SQL FTS5 Virtual tables for full-text search
+- SQL indexes for query performance
 
 ## Requirements
 

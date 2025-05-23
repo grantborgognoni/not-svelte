@@ -1,26 +1,28 @@
 import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import {
-  MovieClientImpl,
+  StatsClientImpl,
   GrpcWebImpl,
-  MovieResponse,
-} from "../generated/movie";
-import Movie from "../components/movie";
+  TeamStatsResponse,
+} from "../generated/cfb_team_stats";
+import Team from "../components/Team";
 
 const rpc = new GrpcWebImpl("http://localhost:50051", {});
-const client = new MovieClientImpl(rpc);
+const client = new StatsClientImpl(rpc);
 
-function fetchMovies(): Promise<MovieResponse> {
-  return client.GetMovies({});
+function fetchTeamStats(team: string): Promise<TeamStatsResponse> {
+  return client.GetTeamStats({
+    team: team,
+  });
 }
 
 export default function MovieDetail() {
   const params = useParams();
-  const movieId = parseInt(params.id || "0", 10);
+  const team = params.id || "";
 
-  const { data, isLoading, error } = useQuery<MovieResponse>({
-    queryKey: ["movies"],
-    queryFn: fetchMovies,
+  const { data, isLoading, error } = useQuery<TeamStatsResponse>({
+    queryKey: ["team-stats", team],
+    queryFn: () => fetchTeamStats(team),
   });
 
   if (isLoading)
@@ -40,7 +42,7 @@ export default function MovieDetail() {
       </div>
     );
 
-  const movie = data?.movies?.find((m) => m.id === movieId);
+  const movie = data?.stats?.find((m) => m.team === team);
 
   if (!movie) {
     return (
@@ -84,7 +86,7 @@ export default function MovieDetail() {
               clipRule="evenodd"
             />
           </svg>
-          Back to movies
+          Back to teams
         </Link>
       </div>
     );
@@ -113,7 +115,7 @@ export default function MovieDetail() {
         </Link>
       </div>
       <div className="bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border border-zinc-700">
-        <Movie details={movie} isDetailView={true} />
+        <Team details={movie} isDetailView={true} />
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 ATTACH DATABASE 'server/db/cfb.db' AS old;
-ATTACH DATABASE 'server/db/cfb_clean.db' AS new;
 
-DROP TABLE IF EXISTS new.cfb_team_stats;
+DROP TABLE IF EXISTS cfb_team_stats;
 
-CREATE TABLE new.cfb_team_stats (
+CREATE TABLE cfb_team_stats (
     season INTEGER NOT NULL,
     team TEXT NOT NULL,
     games INTEGER,
@@ -42,8 +41,7 @@ CREATE TABLE new.cfb_team_stats (
 );
 
 -- Insert and transform data from cfb2013 to cfb2020
-
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2013 AS season,
   "Team" AS team,
@@ -82,7 +80,7 @@ SELECT
 FROM old.cfb2013
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2014 AS season,
   "Team" AS team,
@@ -121,7 +119,7 @@ SELECT
 FROM old.cfb2014
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2015 AS season,
   "Team" AS team,
@@ -160,7 +158,7 @@ SELECT
 FROM old.cfb2015
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2016 AS season,
   "Team" AS team,
@@ -199,7 +197,7 @@ SELECT
 FROM old.cfb2016
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2017 AS season,
   "Team" AS team,
@@ -238,7 +236,7 @@ SELECT
 FROM old.cfb2017
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2018 AS season,
   "Team" AS team,
@@ -277,7 +275,7 @@ SELECT
 FROM old.cfb2018
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2019 AS season,
   "Team" AS team,
@@ -316,7 +314,7 @@ SELECT
 FROM old.cfb2019
 WHERE "Team" IS NOT NULL;
 
-INSERT INTO new.cfb_team_stats
+INSERT INTO cfb_team_stats
 SELECT
   2020 AS season,
   "Team" AS team,
@@ -354,3 +352,12 @@ SELECT
   CAST(NULLIF("Turnover.Margin", '') AS INTEGER) AS turnover_margin
 FROM old.cfb2020
 WHERE "Team" IS NOT NULL;
+
+DROP TABLE IF EXISTS cfb_team_stats_fts;
+CREATE VIRTUAL TABLE cfb_team_stats_fts USING fts5(
+  team,
+  content='cfb_team_stats',
+  content_rowid='rowid'
+);
+INSERT INTO cfb_team_stats_fts(rowid, team)
+SELECT rowid, team FROM cfb_team_stats;
