@@ -111,7 +111,7 @@ export default function MovieDetail() {
               clipRule="evenodd"
             />
           </svg>
-          Back to movies
+          Back to teams
         </Link>
       </div>
       <div className="bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border border-zinc-700">
