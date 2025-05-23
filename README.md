@@ -14,7 +14,7 @@ A prediction layer for future seasons.
 
 - College football team stats listing and detail views
 - Typesafe API via gRPC and protobuf
-- Modern React Router-based routing
+- React Router-based routing
 - Tailwind CSS styling
 - Flexible backend queries (by season, team, etc.)
 - SQL FTS5 Virtual tables for full-text search
