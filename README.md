@@ -6,6 +6,10 @@ A full-stack college football stat app (I was going to do college football coach
 - **Backend:** Rust, gRPC (tonic), Protocol Buffers, sqlx, SQLite
 - **Database:** SQLite
 
+## Path Forward
+
+A prediction layer for future seasons.
+
 ## Features
 
 - College football team stats listing and detail views
