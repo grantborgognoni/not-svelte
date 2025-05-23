@@ -16,13 +16,13 @@ function fetchTeamStats(team: string): Promise<TeamStatsResponse> {
   });
 }
 
-export default function MovieDetail() {
+export default function TeamDetail() {
   const params = useParams();
-  const team = params.id || "";
+  const teamName = params.id || "";
 
   const { data, isLoading, error } = useQuery<TeamStatsResponse>({
-    queryKey: ["team-stats", team],
-    queryFn: () => fetchTeamStats(team),
+    queryKey: ["team-stats", teamName],
+    queryFn: () => fetchTeamStats(teamName),
   });
 
   if (isLoading)
@@ -36,15 +36,15 @@ export default function MovieDetail() {
     return (
       <div className="flex justify-center items-center min-h-[70vh] bg-zinc-900 text-white">
         <div className="text-red-600 bg-red-900/30 p-6 rounded-lg shadow-md border border-red-800">
-          <h3 className="text-lg font-semibold mb-2">Error Loading Movie</h3>
+          <h3 className="text-lg font-semibold mb-2">Error Loading Team</h3>
           <p>{String(error)}</p>
         </div>
       </div>
     );
 
-  const movie = data?.stats?.find((m) => m.team === team);
+  const team = data?.stats?.find((t) => t.team === teamName);
 
-  if (!movie) {
+  if (!team) {
     return (
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-zinc-900 text-white min-h-screen">
         <div className="bg-yellow-900/30 border-l-4 border-yellow-600 p-4 mb-6 rounded-md shadow-sm">
@@ -63,9 +63,9 @@ export default function MovieDetail() {
               </svg>
             </div>
             <div className="ml-3">
-              <p className="text-yellow-300 font-medium">Movie not found</p>
+              <p className="text-yellow-300 font-medium">Team not found</p>
               <p className="text-yellow-200 text-sm mt-1">
-                The movie you're looking for doesn't exist or has been removed.
+                The team you're looking for doesn't exist or has been removed.
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function MovieDetail() {
         </Link>
       </div>
       <div className="bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border border-zinc-700">
-        <Team details={movie} isDetailView={true} />
+        <Team details={team} isDetailView={true} />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ function fetchTeamStats(
   });
 }
 
-export default function MoviesList() {
+export default function TeamsList() {
   const [search, setSearch] = useState("");
   const [season, setSeason] = useState(2019);
 
