@@ -39,20 +39,26 @@ export default function TeamsList() {
     <div className="min-h-screen bg-zinc-900 text-white">
       <header className="bg-zinc-900 shadow-lg sticky top-0 z-10 border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <h1 className="text-4xl font-extrabold text-blue-500 tracking-tight font-sans drop-shadow-md select-none">
-            College Football Stats
-          </h1>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-3xl font-medium text-zinc-100 tracking-tight font-sans drop-shadow-md select-none">
+              College Football Stats
+            </h1>
+            <p className="text-zinc-400 text-sm">
+              Search for your favorite college football team and see their stats
+              for the current season.
+            </p>
+          </div>
           <input
             type="text"
             placeholder="Search teams..."
-            className="w-full sm:w-80 px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-800 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition shadow-sm"
+            className="w-full sm:w-80 px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-800 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-600 transition shadow-sm"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <input
             type="number"
             placeholder="Season"
-            className="w-full sm:w-80 px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-800 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-600 transition shadow-sm"
+            className="w-full sm:w-80 px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-800 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-600 transition shadow-sm"
             value={season}
             onChange={(e) => setSeason(parseInt(e.target.value))}
           />
@@ -60,12 +66,12 @@ export default function TeamsList() {
       </header>
       {isLoading && (
         <div className="flex justify-center items-center min-h-[60vh]">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-zinc-600"></div>
         </div>
       )}
       {error && (
         <div className="flex justify-center items-center min-h-[60vh]">
-          <div className="text-red-600 bg-red-900/30 p-6 rounded-lg shadow-md border border-red-800">
+          <div className="text-red-600 bg-red-900/30 p-6 rounded-lg shadow-md border border-zinc-800">
             <h3 className="text-lg font-semibold mb-2">Error Loading Teams</h3>
             <p>{String(error)}</p>
           </div>
@@ -82,7 +88,7 @@ export default function TeamsList() {
             <Link
               key={stats.team}
               to={`/${stats.team}`}
-              className="group bg-zinc-800 rounded-2xl shadow-xl border border-zinc-700 hover:shadow-2xl transition overflow-hidden flex flex-col cursor-pointer transform hover:scale-[1.03] focus:ring-2 focus:ring-red-600 focus:outline-none"
+              className="group bg-zinc-800 rounded-2xl shadow-xl border border-zinc-700 hover:shadow-2xl transition overflow-hidden flex flex-col cursor-pointer transform hover:scale-[1.03] focus:ring-2 focus:ring-zinc-600 focus:outline-none"
             >
               <Team details={stats} isDetailView={false} />
             </Link>

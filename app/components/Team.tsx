@@ -11,7 +11,7 @@ export default function Team({
   if (!isDetailView) {
     return (
       <div className="relative group flex flex-col h-full bg-zinc-900 rounded-2xl shadow border border-zinc-800 p-4 hover:shadow-lg transition">
-        <h2 className="text-xl font-bold text-red-500 mb-2 truncate">
+        <h2 className="text-xl font-bold text-zinc-100 mb-2 truncate">
           {details.team}
         </h2>
         <div className="flex flex-wrap gap-2 text-sm text-zinc-300 mb-2">
@@ -39,7 +39,7 @@ export default function Team({
   return (
     <div className="flex flex-col md:flex-row bg-zinc-900 text-white rounded-2xl overflow-hidden shadow-2xl border border-zinc-800">
       <div className="p-8 flex-1 flex flex-col gap-4">
-        <h2 className="text-3xl font-extrabold text-red-600 mb-2">
+        <h2 className="text-3xl font-extrabold text-zinc-100 mb-2">
           {details.team}
         </h2>
         <div className="flex flex-wrap gap-3 items-center text-sm mb-4">

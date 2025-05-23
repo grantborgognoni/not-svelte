@@ -28,14 +28,14 @@ export default function TeamDetail() {
   if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-[70vh] bg-zinc-900 text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600" />
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-zinc-600" />
       </div>
     );
 
   if (error)
     return (
       <div className="flex justify-center items-center min-h-[70vh] bg-zinc-900 text-white">
-        <div className="text-red-600 bg-red-900/30 p-6 rounded-lg shadow-md border border-red-800">
+        <div className="text-red-600 bg-red-900/30 p-6 rounded-lg shadow-md border border-zinc-800">
           <h3 className="text-lg font-semibold mb-2">Error Loading Team</h3>
           <p>{String(error)}</p>
         </div>
@@ -97,7 +97,7 @@ export default function TeamDetail() {
       <div className="mb-8">
         <Link
           to="/"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 transition-colors"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-zinc-600 hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600 transition-colors"
         >
           <svg
             className="mr-2 -ml-1 h-5 w-5"
