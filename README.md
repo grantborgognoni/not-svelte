@@ -28,7 +28,7 @@ A full-stack college football stat app (I was going to do college football coach
    ```
    DATABASE_URL=sqlite:server/db/cfb_clean.db
    ```
-3. From `app/`, install dependencies:
+3. To start the developement environment run:
    ```bash
    npm install
    npm run dev
